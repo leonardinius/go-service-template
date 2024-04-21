@@ -1,0 +1,44 @@
+{
+  "explorer.excludeGitIgnore": true,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    ".gitignore": ".gitattributes, .gitmodules, .gitmessage, .mailmap, .git-blame*, .pre-commit-config.yaml",
+    "go.mod": "go.mod,go.sum",
+    "go.work": "go.work,go.work.sum"
+  },
+  "go.lintFlags": [
+    "--config",
+    ".golangci.yml",
+  ],
+  "go.lintOnSave": "workspace",
+  "explorer.sortOrder": "foldersNestsFiles",
+  "go.lintTool": "golangci-lint",
+  "gopls": {
+    "formatting.gofumpt": true,
+    "formatting.local": "github.com/leonardinius/go-service-template",
+    "ui.semanticTokens": true,
+  },
+  "go.formatTool": "goimports",
+  "go.testFlags": [
+    "-v",
+    "-parallel=4",
+    "-count=1",
+  ],
+  "go.testTimeout": "60s",
+  "[go]": {
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    },
+    "editor.formatOnSaveMode": "file"
+  },
+  "yaml.format.enable": true,
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.tabSize": 2
+  },
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "modifications",
+  "cSpell.words": [],
+}

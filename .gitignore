@@ -1,0 +1,9 @@
+/.vscode/*.log
+/.idea/
+/bin/
+/.bin/
+.volume/
+go.work
+go.work.sum
+
+/.env

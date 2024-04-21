@@ -1,0 +1,38 @@
+name: release-workflow
+
+on:
+  workflow_dispatch: { }
+
+jobs:
+  build:
+    name: release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Out Repo
+        uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+      - name: Go/Build
+        run: make go/build
+      # - name: Cache Docker Images
+      #   uses: ScribeMD/docker-cache@0.3.7
+      #   with:
+      #     key: docker-v1-${{ runner.os }}
+      # - name: Build All
+      #   run: make all
+      - name: Release Tag
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          #!/bin/sh
+          set -e
+          echo "Fetching all tags and history"
+          git fetch --tags --unshallow --prune 1>/dev/null 2>/dev/null
+          PREV_RELEASE=$(gh release list --limit 1 --json tagName | jq -r '.[].tagName')
+          echo "Previous release tag: ${PREV_RELEASE}"
+          NEW_RELEASE=$(git tag --sort=-version:refname | head -n 1)
+          echo "Creating release ${NEW_RELEASE}"
+          gh release create "${NEW_RELEASE}" --title "${NEW_RELEASE}" --latest --generate-notes --notes-start-tag "${PREV_RELEASE}" LICENSE bin/*
+

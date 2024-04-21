@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package version.v1;
+
+import "shared/v1/error.proto";
+
+// VcsType is the type of version control system.
+enum VcsType {
+  VCS_TYPE_UNSPECIFIED = 0;
+  VCS_TYPE_GIT = 1;
+}
+
+// Version is the version information of the service.
+message Version {
+  VcsType vcs = 1;
+  string service_name = 2;
+  string ref_name = 3;
+  string commit = 4;
+  string build_time = 5;
+  string full_version = 6;
+}
+
+message GetVersionRequest { }
+
+message GetVersionResponse {
+  shared.v1.Error error = 1;
+  Version version = 2;
+}
+
+service VersionService {
+  rpc GetVersion(GetVersionRequest) returns (GetVersionResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
+}

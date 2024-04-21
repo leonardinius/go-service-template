@@ -1,0 +1,46 @@
+name: main-workflow
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch: { }
+
+jobs:
+  build:
+    name: tag-main-branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Out Repo
+        uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+      # - name: Cache Docker Images
+      #   uses: ScribeMD/docker-cache@0.3.7
+      #   with:
+      #     key: docker-v1-${{ runner.os }}
+      - name: Go Build (Fast validity check)
+        run: make test
+      - name: Auto Tag and Push
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          #!/bin/sh
+          set -e
+          curl -sL https://git.io/autotag-install | sudo sh -s -- -b /usr/bin
+          echo "Fetching all tags and history"
+          git fetch --tags --unshallow --prune 1>/dev/null 2>/dev/null
+          if [ $(git rev-parse --abbrev-ref HEAD) != "main" ]; then
+            # ensure a local 'master' branch exists at 'refs/heads/main'
+            git branch --track main origin/main
+          fi
+          LATEST_TAG=$(git tag --sort=-version:refname | head -n 1)
+          echo "Latest tag: ${LATEST_TAG}"
+
+          NEW_RELEASE=$(autotag)
+          echo "Pushing tag v${NEW_RELEASE}"
+          git push --tags
+

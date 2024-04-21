@@ -3,7 +3,7 @@ module github.com/leonardinius/go-service-template
 go 1.22.2
 
 require (
-	connectrpc.com/connect v1.16.0
+	connectrpc.com/connect v1.16.1
 	connectrpc.com/otelconnect v0.7.0
 	github.com/go-logr/logr v1.4.1
 	github.com/joho/godotenv v1.5.1

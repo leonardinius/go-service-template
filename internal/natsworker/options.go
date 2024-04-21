@@ -148,8 +148,9 @@ func buildNatsIOOptions(ctx context.Context, opts ...Option) (*natsOptions, []na
 	errorCb := func(nc *natsio.Conn, sub *natsio.Subscription, err error) {
 		slog.LogAttrs(ctx, slog.LevelError, "natsio error", slog.Any("error", err))
 	}
-	natsioOptions = append(natsioOptions, natsio.ConnectHandler(natsConCb("connect")),
-		natsio.ClosedHandler(natsConCb("closed")),
+	natsioOptions = append(natsioOptions,
+		natsio.ConnectHandler(natsConCb("connect")),
+		// natsio.ClosedHandler(natsConCb("closed")),
 		natsio.DisconnectHandler(natsConCb("disconnect")),
 		natsio.ReconnectHandler(natsConCb("reconnect")),
 		natsio.DiscoveredServersHandler(natsConCb("discovered_servers")),

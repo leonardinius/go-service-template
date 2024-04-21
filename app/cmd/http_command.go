@@ -68,11 +68,6 @@ func (r *httpCommand) runServe(ctx context.Context, address string) error {
 		address = net.JoinHostPort(address, httpDefaultListenPort)
 	}
 
-	go func() {
-		<-ctx.Done()
-		slog.LogAttrs(ctx, slog.LevelInfo, "signal received, shutting down...", slog.String("address", address))
-	}()
-
 	slog.LogAttrs(ctx, slog.LevelInfo, "starting http",
 		slog.String("version", version.FullVersion),
 		slog.String("address", address))
@@ -91,7 +86,7 @@ func (r *httpCommand) runServe(ctx context.Context, address string) error {
 	case err := <-errCh:
 		return err
 	case <-ctx.Done():
-		slog.LogAttrs(ctx, slog.LevelInfo, "shutting down http server")
+		slog.LogAttrs(ctx, slog.LevelInfo, "signal received, shutting down http server...", slog.String("address", address))
 		return srv.Shutdown(context.WithoutCancel(ctx))
 	}
 }

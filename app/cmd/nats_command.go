@@ -88,12 +88,7 @@ func (r *natsCommand) runServe(ctx context.Context, metricsAddress string) error
 		metricsAddress = net.JoinHostPort(metricsAddress, metricsDefaultListenPort)
 	}
 
-	go func() {
-		<-ctx.Done()
-		slog.LogAttrs(ctx, slog.LevelInfo, "signal received, shutting down...", slog.String("metrics", metricsAddress))
-	}()
-
-	slog.LogAttrs(ctx, slog.LevelInfo, "starting NATS.io worker",
+	slog.LogAttrs(ctx, slog.LevelInfo, "starting nats worker",
 		slog.String("version", version.FullVersion),
 		slog.String("metrics", metricsAddress),
 		slog.String("server", r.url),
@@ -125,7 +120,7 @@ func (r *natsCommand) runServe(ctx context.Context, metricsAddress string) error
 	case err := <-errCh:
 		return err
 	case <-ctx.Done():
-		slog.LogAttrs(ctx, slog.LevelInfo, "shutting down NATS.io worker")
+		slog.LogAttrs(ctx, slog.LevelInfo, "shutting down nats worker...", slog.String("server", url))
 		return wrk.Shutdown(context.WithoutCancel(ctx))
 	}
 }

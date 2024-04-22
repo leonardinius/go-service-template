@@ -10,7 +10,7 @@ Go service template
 | Insights              | Opentelemetry tracing support (HTTP, gRPC) |
 |                       | Prometheus metrics |
 | Build                 | Makefile |
-| Github Actions        | Github Actions |
+|                       | Github Actions |
 | Logging               | slog  |
 | E2E Testing           | E2E testing skeleton |
 

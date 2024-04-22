@@ -16,10 +16,34 @@ Go service template
 
 ## Usage
 
+### Create a new service
+
 This repository is intended to serve as a template for new services. To use it, follow these steps:
 
 - Fork this repository.
-- Find & replace `go-service-template` with your service name.
+- Find & replace `github.com/leonardinius/go-service-template` with you package name and `go-service-template` with your service name.
+- Create initial tags `v0.0.1` and set `Read and write permissions` under `Settings` / `Actions` / `General` / `Workflow permissions`.
+
+### Development
+
+Run make to see the available commands:
+
+```bash
+$ make
+Usage: make <target>
+ Default
+        help                  Display this help
+        all                   Formats, builds and tests the codebase
+ Build/Run
+        clean                 Format all go files
+        gen                   Runs all codegen and docs tasks
+        test                  Runs all tests (excluding e2e)
+        e2e                   Runs e2e tests
+        lint                  Runs all linters
+        build                 Builds all artifacts
+        run                   Runs service locally. Use ARGS="" make run to pass arguments
+        watch                 Runs in watch mode. Example: `make watch ARGS="http"`
+```
 
 ## Structure
 

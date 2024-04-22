@@ -112,6 +112,7 @@ func (w *worker) natsMsgHandler(ctx context.Context, subscribePath, handlerPath 
 				slog.String("parent_error", err.Error()),
 			)
 		}
+		req = req.WithContext(ctx)
 		buffer := bytes.NewBufferString("")
 		resp := NewStdResponseWriter(buffer)
 

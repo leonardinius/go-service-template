@@ -143,15 +143,28 @@ api/breaking: $(BIN)/buf ### Checks for breaking changes in API spec
 	  --against "https://github.com/leonardinius/go-service-template.git#branch=main,subdir=/api/proto" \
 
 .PHONY: api/generate
-api/generate: api/lint $(BIN)/buf ### Generate go code from API spec
+api/generate: api/lint $(BIN)/buf $(BIN)/protoc-gen-go $(BIN)/protoc-gen-validate-go $(BIN)/protoc-gen-connect-go ### Generate go code from API spec
 	@echo -e "$(CYAN)--- api generate go code and docs...$(CLEAR)"
 	@rm -rf internal/apigen/* api/docs/*
-	$(BIN)/buf generate --template ./api/buf.gen.yaml ./api/proto
+	@echo "$(BIN)/buf generate --template ./api/buf.gen.yaml ./api/proto"
+	@PATH="$(BIN):$(PATH)" $(BIN)/buf generate --template ./api/buf.gen.yaml ./api/proto
 
 # TOOLS
 $(BIN)/buf: Makefile
 	@mkdir -p $(@D)
 	go install github.com/bufbuild/buf/cmd/buf@v1.30.1
+
+$(BIN)/protoc-gen-go: Makefile
+	@mkdir -p $(@D)
+	go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.33.0
+
+$(BIN)/protoc-gen-validate-go: Makefile
+	@mkdir -p $(@D)
+	go install github.com/envoyproxy/protoc-gen-validate/cmd/protoc-gen-validate-go@v1.0.4
+
+$(BIN)/protoc-gen-connect-go: Makefile
+	@mkdir -p $(@D)
+	go install connectrpc.com/connect/cmd/protoc-gen-connect-go@v1.16.1
 
 $(BIN)/golangci-lint: Makefile
 	@mkdir -p $(@D)

@@ -4,13 +4,13 @@ managed:
   go_package_prefix:
     default: github.com/leonardinius/go-service-template/internal/apigen
 plugins:
-  - plugin: buf.build/protocolbuffers/go
+  - plugin: go
     out: internal/apigen
     opt: paths=source_relative
-  - plugin: buf.build/connectrpc/go
+  - plugin: connect-go
     out: internal/apigen
     opt: paths=source_relative
-  - plugin: buf.build/bufbuild/validate-go
+  - plugin: validate-go
     out: internal/apigen
     opt: paths=source_relative
   - plugin: buf.build/community/pseudomuto-doc

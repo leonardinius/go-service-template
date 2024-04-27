@@ -11,7 +11,7 @@ import (
 	"github.com/nats-io/nats.go"
 	"github.com/spf13/cobra"
 
-	"github.com/leonardinius/go-service-template/internal/natsworker"
+	"github.com/leonardinius/go-service-template/internal/apiworker"
 	"github.com/leonardinius/go-service-template/internal/services"
 	"github.com/leonardinius/go-service-template/internal/services/version"
 )
@@ -36,7 +36,7 @@ type natsCommand struct {
 	tlsca    string
 }
 
-func CreateNATSWorkerCommand(context.Context) *natsCommand {
+func CreateapiworkerCommand(context.Context) *natsCommand {
 	r := natsCommand{}
 
 	r.c = &cobra.Command{
@@ -106,7 +106,7 @@ func (r *natsCommand) runServe(ctx context.Context, metricsAddress string) error
 	}
 	options := r.natsOptions()
 
-	wrk, err := natsworker.NewWorker(ctx, url, services.AllRoutes, options...)
+	wrk, err := apiworker.NewWorker(ctx, url, services.AllRoutes, options...)
 	if err != nil {
 		return err
 	}
@@ -125,39 +125,39 @@ func (r *natsCommand) runServe(ctx context.Context, metricsAddress string) error
 	}
 }
 
-func (r *natsCommand) natsOptions() []natsworker.Option {
-	var options []natsworker.Option
+func (r *natsCommand) natsOptions() []apiworker.Option {
+	var options []apiworker.Option
 	if r.metricsAddress != "" {
-		options = append(options, natsworker.WithMetricsAddress(r.metricsAddress))
+		options = append(options, apiworker.WithMetricsAddress(r.metricsAddress))
 	}
 	if r.url != "" {
-		options = append(options, natsworker.WithURL(r.url))
+		options = append(options, apiworker.WithURL(r.url))
 	}
 	if r.user != "" {
-		options = append(options, natsworker.WithUser(r.user))
+		options = append(options, apiworker.WithUser(r.user))
 	}
 	if r.password != "" {
-		options = append(options, natsworker.WithPassword(r.password))
+		options = append(options, apiworker.WithPassword(r.password))
 	}
 	if r.creds != "" {
 		creds := mustExpandPath(r.creds)
-		options = append(options, natsworker.WithCreds(creds))
+		options = append(options, apiworker.WithCreds(creds))
 	}
 	if r.nkey != "" {
 		nkey := mustExpandPath(r.nkey)
-		options = append(options, natsworker.WithNKey(nkey))
+		options = append(options, apiworker.WithNKey(nkey))
 	}
 	if r.tlscert != "" {
 		tlscert := mustExpandPath(r.tlscert)
-		options = append(options, natsworker.WithTLSCert(tlscert))
+		options = append(options, apiworker.WithTLSCert(tlscert))
 	}
 	if r.tlskey != "" {
 		tlskey := mustExpandPath(r.tlskey)
-		options = append(options, natsworker.WithTLSKey(tlskey))
+		options = append(options, apiworker.WithTLSKey(tlskey))
 	}
 	if r.tlsca != "" {
 		tlsca := mustExpandPath(r.tlsca)
-		options = append(options, natsworker.WithTLSCA(tlsca))
+		options = append(options, apiworker.WithTLSCA(tlsca))
 	}
 	return options
 }

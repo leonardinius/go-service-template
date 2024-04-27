@@ -1,4 +1,4 @@
-package natsworker
+package apiworker
 
 import (
 	sharedv1 "github.com/leonardinius/go-service-template/internal/apigen/shared/v1"

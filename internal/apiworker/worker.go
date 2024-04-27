@@ -1,4 +1,4 @@
-package natsworker
+package apiworker
 
 import (
 	"bytes"

@@ -1,4 +1,4 @@
-package natsworkere2e_test
+package apiworkere2e_test
 
 import (
 	"context"
@@ -106,7 +106,7 @@ func runTest(t *testing.T, test func(ctx context.Context, natsPort, metricsPort 
 	address := "nats://" + net.JoinHostPort(Host, strconv.Itoa(natsServerPort))
 	metricsAddress := net.JoinHostPort(Host, strconv.Itoa(metricsPort))
 	errCh := make(chan error, 1)
-	serveCommand := cmd.CreateNATSWorkerCommand(ctx)
+	serveCommand := cmd.CreateapiworkerCommand(ctx)
 	serveCommand.Command().SetArgs([]string{
 		"--server=" + address,
 		"--metrics=" + metricsAddress,

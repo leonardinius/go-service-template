@@ -61,10 +61,10 @@ Usage: make <target>
 │   ├── apiserv           - API server (gRPC, HTTP)
 │   ├── insights          - Opentelemetry tracing, Prometheus metrics
 │   ├── log               - slog logging
-│   ├── natsworker        - NATS.io worker
+│   ├── apiworker         - NATS.io worker
 │   └── services          - API implementation (Business logic)
 └── teste2e             <- E2E testing
     ├── internal          - internal packages
-    ├── natsworkere2e     - NATS.io worker E2E testing
+    ├── apiworkere2e      - NATS.io worker E2E testing
     └── servehttpe2e      - HTTP server E2E testing
 ```

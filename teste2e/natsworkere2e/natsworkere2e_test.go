@@ -106,7 +106,7 @@ func runTest(t *testing.T, test func(ctx context.Context, natsPort, metricsPort 
 	address := "nats://" + net.JoinHostPort(Host, strconv.Itoa(natsServerPort))
 	metricsAddress := net.JoinHostPort(Host, strconv.Itoa(metricsPort))
 	errCh := make(chan error, 1)
-	serveCommand := cmd.CreateapiworkerCommand(ctx)
+	serveCommand := cmd.CreateApiworkerCommand(ctx)
 	serveCommand.Command().SetArgs([]string{
 		"--server=" + address,
 		"--metrics=" + metricsAddress,

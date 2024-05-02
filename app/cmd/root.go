@@ -48,7 +48,7 @@ func Execute(ctx context.Context, args []string) error {
 
 	rootCmd := CreateRootCommand(ctx).Command()
 	rootCmd.AddCommand(CreateHTTPServeCommand(ctx).Command())
-	rootCmd.AddCommand(CreateapiworkerCommand(ctx).Command())
+	rootCmd.AddCommand(CreateApiworkerCommand(ctx).Command())
 
 	rootCmd.SetArgs(args)
 

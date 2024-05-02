@@ -36,7 +36,7 @@ type natsCommand struct {
 	tlsca    string
 }
 
-func CreateapiworkerCommand(context.Context) *natsCommand {
+func CreateApiworkerCommand(context.Context) *natsCommand {
 	r := natsCommand{}
 
 	r.c = &cobra.Command{
@@ -77,10 +77,10 @@ func (r *natsCommand) Command() *cobra.Command {
 }
 
 func (r *natsCommand) execute(ctx context.Context) error {
-	return r.runServe(ctx, r.metricsAddress)
+	return r.runWorker(ctx, r.metricsAddress)
 }
 
-func (r *natsCommand) runServe(ctx context.Context, metricsAddress string) error {
+func (r *natsCommand) runWorker(ctx context.Context, metricsAddress string) error {
 	// check if address is host/ip:port
 	_, _, err := net.SplitHostPort(metricsAddress)
 	if err != nil && strings.Contains(err.Error(), "missing port in address") {

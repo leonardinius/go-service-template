@@ -12,7 +12,7 @@ require (
 	github.com/prometheus/client_golang v1.19.1
 	github.com/remychantenay/slog-otel v1.3.1
 	github.com/slok/go-http-metrics v0.12.0
-	github.com/spf13/cobra v1.8.0
+	github.com/spf13/cobra v1.8.1
 	github.com/stretchr/testify v1.9.0
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.52.0
 	go.opentelemetry.io/otel v1.27.0

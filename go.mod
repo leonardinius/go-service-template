@@ -4,7 +4,7 @@ go 1.22.2
 
 require (
 	connectrpc.com/connect v1.16.2
-	connectrpc.com/otelconnect v0.7.0
+	connectrpc.com/otelconnect v0.7.1
 	github.com/go-logr/logr v1.4.2
 	github.com/joho/godotenv v1.5.1
 	github.com/nats-io/nats-server/v2 v2.10.18

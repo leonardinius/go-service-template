@@ -8,7 +8,7 @@ require (
 	github.com/go-logr/logr v1.4.2
 	github.com/joho/godotenv v1.5.1
 	github.com/nats-io/nats-server/v2 v2.10.18
-	github.com/nats-io/nats.go v1.36.0
+	github.com/nats-io/nats.go v1.37.0
 	github.com/prometheus/client_golang v1.19.1
 	github.com/remychantenay/slog-otel v1.3.2
 	github.com/slok/go-http-metrics v0.12.0

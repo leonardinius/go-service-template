@@ -37,6 +37,7 @@ COMMIT			?= $(shell [[ `git status --porcelain` ]] && echo dirty || git rev-pars
 GOPATH			?= ${shell go env GOPATH}
 GOOS			?= $(shell go env GOHOSTOS)
 GOARCH			?= $(shell go env GOHOSTARCH)
+CGO_ENABLED 	?= 0
 export GOBIN 	:= $(abspath $(BIN))
 
 SERVICE_NAME	= service-template
@@ -88,7 +89,7 @@ build: go/build ## Builds all artifacts
 .PHONY: run
 run: ## Runs service locally. Use ARGS="" make run to pass arguments
 	@echo -e "$(CYAN)--- run ...$(CLEAR)"
-	GOOS=${GOOS} GOARCH=${GOARCH} go run ${LDFLAGS} ./app/ $(ARGS)
+	CGO_ENABLED=${CGO_ENABLED} GOOS=${GOOS} GOARCH=${GOARCH} go run ${LDFLAGS} ./app/ $(ARGS)
 
 .PHONY: watch
 watch: $(BIN)/CompileDaemon ## Runs in watch mode. Example: `make watch ARGS="http"`
@@ -126,7 +127,7 @@ go/lint: $(BIN)/golangci-lint ### Lints the codebase using golangci-lint
 go/build: ### Builds service
 	@echo -e "$(CYAN)--- build ...$(CLEAR)"
 	@mkdir -p ${BUILDOUT}
-	GOOS=${GOOS} GOARCH=${GOARCH} go build ${LDFLAGS} -o ${BUILDOUT}/${SERVICE_NAME}-${GOOS}-${GOARCH} ./app/
+	CGO_ENABLED=${CGO_ENABLED} GOOS=${GOOS} GOARCH=${GOARCH} go build ${LDFLAGS} -o ${BUILDOUT}/${SERVICE_NAME}-${GOOS}-${GOARCH} ./app/
 	@echo -e "$(CYAN)--- binary at ${BUILDOUT}/${SERVICE_NAME}-${GOOS}-${GOARCH}$(CLEAR)"
 
 .PHONY: go/test

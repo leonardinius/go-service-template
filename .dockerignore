@@ -1,0 +1,10 @@
+.docker/
+.idea/
+.vscode/
+.github/
+.local/
+.bin/
+/bin/
+/node_modules/
+/build/
+/secrets/

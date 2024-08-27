@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 	"testing"
@@ -162,4 +163,5 @@ func TestMain(m *testing.M) {
 	if err != nil {
 		panic(err)
 	}
+	os.Exit(0)
 }

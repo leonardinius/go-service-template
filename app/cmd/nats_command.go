@@ -36,7 +36,7 @@ type natsCommand struct {
 	tlsca    string
 }
 
-func CreateApiWorkerCommand(context.Context) *natsCommand {
+func CreateAPIWorkerCommand(context.Context) *natsCommand {
 	r := natsCommand{}
 
 	r.c = &cobra.Command{

@@ -28,8 +28,9 @@ linters-settings:
     enable-all-rules: false
   sloglint:
     no-mixed-args: true
-    kv-only: true
-    context-only: true
+    kv-only: false
+    attr-only: true
+    context: scope
     static-msg: true
     # Enforce a single key naming convention. Values: snake, kebab, camel, pascal. Default: ""
     key-naming-case: snake
@@ -42,23 +43,16 @@ linters:
     - gochecknoinits
     - goconst
     - gomnd
+    - mnd
     - ireturn
     - nlreturn
     - nonamedreturns
     - varnamelen
     - wrapcheck
     - wsl
+    - nilnil
       # dead packages
-    - deadcode
-    - exhaustivestruct
-    - golint
-    - ifshort
-    - interfacer
-    - maligned
-    - nosnakecase
-    - scopelint
-    - structcheck
-    - varcheck
+    - execinquery
   fast: false
   enable-all: true
 

@@ -43,4 +43,7 @@
   "cSpell.words": [
     "otel"
   ],
+  "cSpell.enableFiletypes": [
+    "!yaml"
+  ],
 }

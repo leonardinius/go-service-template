@@ -3,6 +3,7 @@ package apiworkere2e_test
 import (
 	"context"
 	"net"
+	"os"
 	"strconv"
 	"strings"
 	"testing"
@@ -106,7 +107,7 @@ func runTest(t *testing.T, test func(ctx context.Context, natsPort, metricsPort 
 	address := "nats://" + net.JoinHostPort(Host, strconv.Itoa(natsServerPort))
 	metricsAddress := net.JoinHostPort(Host, strconv.Itoa(metricsPort))
 	errCh := make(chan error, 1)
-	serveCommand := cmd.CreateApiWorkerCommand(ctx)
+	serveCommand := cmd.CreateAPIWorkerCommand(ctx)
 	serveCommand.Command().SetArgs([]string{
 		"--server=" + address,
 		"--metrics=" + metricsAddress,
@@ -145,4 +146,5 @@ func TestMain(m *testing.M) {
 	if err != nil {
 		panic(err)
 	}
+	os.Exit(0)
 }

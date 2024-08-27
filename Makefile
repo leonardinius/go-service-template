@@ -15,6 +15,15 @@
 #
 #############################################################################################################
 .DELETE_ON_ERROR:
+# TOOLS
+GOLANGCILINT_VERSION 			= v1.60.1
+GOFUMPT_VERSION		 			= v0.6.0
+COMPILEDAEMON_VERSION			= v1.4.0
+BUFF_VERSION					= v1.30.1
+PROTOC_GEN_CONNECT_GO_VERSION 	= v1.16.1
+PROTOC_GEN_VALIDATE_GO_VERSION 	= v1.0.4
+PROTOC_GEN_GO_VERSION 			= v1.33.0
+# SHELL
 .SHELLFLAGS 	:= -eu -o pipefail -c
 SHELL			= /bin/bash
 BIN 			:= .bin
@@ -152,29 +161,29 @@ api/generate: api/lint $(BIN)/buf $(BIN)/protoc-gen-go $(BIN)/protoc-gen-validat
 # TOOLS
 $(BIN)/buf: Makefile
 	@mkdir -p $(@D)
-	go install github.com/bufbuild/buf/cmd/buf@v1.30.1
+	go install github.com/bufbuild/buf/cmd/buf@$(BUFF_VERSION)
 
 $(BIN)/protoc-gen-go: Makefile
 	@mkdir -p $(@D)
-	go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.33.0
+	go install google.golang.org/protobuf/cmd/protoc-gen-go@$(PROTOC_GEN_GO_VERSION)
 
 $(BIN)/protoc-gen-validate-go: Makefile
 	@mkdir -p $(@D)
-	go install github.com/envoyproxy/protoc-gen-validate/cmd/protoc-gen-validate-go@v1.0.4
+	go install github.com/envoyproxy/protoc-gen-validate/cmd/protoc-gen-validate-go@$(PROTOC_GEN_VALIDATE_GO_VERSION)
 
 $(BIN)/protoc-gen-connect-go: Makefile
 	@mkdir -p $(@D)
-	go install connectrpc.com/connect/cmd/protoc-gen-connect-go@v1.16.1
+	go install connectrpc.com/connect/cmd/protoc-gen-connect-go@$(PROTOC_GEN_CONNECT_GO_VERSION)
 
 $(BIN)/golangci-lint: Makefile
 	@mkdir -p $(@D)
-	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.57.2
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@$(GOLANGCILINT_VERSION)
 
 $(BIN)/CompileDaemon: Makefile
 	@mkdir -p $(@D)
-	go install github.com/githubnemo/CompileDaemon@v1.4.0
+	go install github.com/githubnemo/CompileDaemon@$(COMPILEDAEMON_VERSION)
 
 $(BIN)/gofumpt: Makefile
 	@mkdir -p $(@D)
-	go install mvdan.cc/gofumpt@v0.6.0
+	go install mvdan.cc/gofumpt@$(GOFUMPT_VERSION)
 

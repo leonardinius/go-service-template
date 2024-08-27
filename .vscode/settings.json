@@ -40,5 +40,7 @@
   },
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "modifications",
-  "cSpell.words": [],
+  "cSpell.words": [
+    "otel"
+  ],
 }

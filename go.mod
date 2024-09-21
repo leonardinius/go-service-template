@@ -5,7 +5,7 @@ go 1.23
 toolchain go1.23.1
 
 require (
-	connectrpc.com/connect v1.16.2
+	connectrpc.com/connect v1.17.0
 	connectrpc.com/otelconnect v0.7.1
 	github.com/go-logr/logr v1.4.2
 	github.com/joho/godotenv v1.5.1

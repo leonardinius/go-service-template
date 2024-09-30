@@ -9,7 +9,7 @@ require (
 	connectrpc.com/otelconnect v0.7.1
 	github.com/go-logr/logr v1.4.2
 	github.com/joho/godotenv v1.5.1
-	github.com/nats-io/nats-server/v2 v2.10.20
+	github.com/nats-io/nats-server/v2 v2.10.21
 	github.com/nats-io/nats.go v1.37.0
 	github.com/prometheus/client_golang v1.20.4
 	github.com/remychantenay/slog-otel v1.3.2

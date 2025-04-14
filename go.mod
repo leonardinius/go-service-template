@@ -1,8 +1,7 @@
 module github.com/leonardinius/go-service-template
 
 go 1.23
-
-toolchain go1.23.1
+toolchain go1.24.1
 
 require (
 	connectrpc.com/connect v1.17.0
@@ -10,7 +9,7 @@ require (
 	github.com/go-logr/logr v1.4.2
 	github.com/joho/godotenv v1.5.1
 	github.com/nats-io/nats-server/v2 v2.10.22
-	github.com/nats-io/nats.go v1.37.0
+	github.com/nats-io/nats.go v1.41.1
 	github.com/prometheus/client_golang v1.20.5
 	github.com/remychantenay/slog-otel v1.3.2
 	github.com/slok/go-http-metrics v0.13.0
@@ -38,11 +37,11 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.25.1 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/klauspost/compress v1.17.11 // indirect
+	github.com/klauspost/compress v1.18.0 // indirect
 	github.com/minio/highwayhash v1.0.3 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/nats-io/jwt/v2 v2.5.8 // indirect
-	github.com/nats-io/nkeys v0.4.7 // indirect
+	github.com/nats-io/nkeys v0.4.9 // indirect
 	github.com/nats-io/nuid v1.0.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/prometheus/client_model v0.6.1 // indirect

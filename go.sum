@@ -62,8 +62,8 @@ github.com/prometheus/common v0.62.0 h1:xasJaQlnWAeyHdUBeGjXmutelfJHWMRr+Fg4QszZ
 github.com/prometheus/common v0.62.0/go.mod h1:vyBcEuLSvWos9B1+CyL7JZ2up+uFzXhkqml0W5zIY1I=
 github.com/prometheus/procfs v0.15.1 h1:YagwOFzUgYfKKHX6Dr+sHT7km/hxC76UB0learggepc=
 github.com/prometheus/procfs v0.15.1/go.mod h1:fB45yRUv8NstnjriLhBQLuOUt+WW4BsoGhij/e3PBqk=
-github.com/remychantenay/slog-otel v1.3.2 h1:ZBx8qnwfLJ6e18Vba4e9Xp9B7khTmpIwFsU1sAmActw=
-github.com/remychantenay/slog-otel v1.3.2/go.mod h1:gKW4tQ8cGOKoA+bi7wtYba/tcJ6Tc9XyQ/EW8gHA/2E=
+github.com/remychantenay/slog-otel v1.3.3 h1:Atk1p630QPgYFW4/YEyBuObNmwrYpx5Tglnl1sdhSVA=
+github.com/remychantenay/slog-otel v1.3.3/go.mod h1:OMdQAB/S2341nbz2Ramh3+RH2yYGLJLspTaghiCToTU=
 github.com/rogpeppe/go-internal v1.13.1 h1:KvO1DLK/DRN07sQ1LQKScxyZJuNnedQ5/wKSR38lUII=
 github.com/rogpeppe/go-internal v1.13.1/go.mod h1:uMEvuHeurkdAXX61udpOXGD/AzZDWNMNyH2VO9fmH0o=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=

@@ -12,7 +12,7 @@ require (
 	github.com/nats-io/nats-server/v2 v2.10.22
 	github.com/nats-io/nats.go v1.37.0
 	github.com/prometheus/client_golang v1.22.0
-	github.com/remychantenay/slog-otel v1.3.2
+	github.com/remychantenay/slog-otel v1.3.3
 	github.com/slok/go-http-metrics v0.13.0
 	github.com/spf13/cobra v1.9.1
 	github.com/stretchr/testify v1.10.0

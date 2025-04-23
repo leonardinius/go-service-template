@@ -16,7 +16,7 @@
 #############################################################################################################
 .DELETE_ON_ERROR:
 # TOOLS
-GOLANGCILINT_VERSION 			= v1.60.1
+GOLANGCILINT_VERSION 			= v2.1.2
 GOFUMPT_VERSION		 			= v0.6.0
 COMPILEDAEMON_VERSION			= v1.4.0
 BUFF_VERSION					= v1.32.0
@@ -178,7 +178,7 @@ $(BIN)/protoc-gen-connect-go: Makefile
 
 $(BIN)/golangci-lint: Makefile
 	@mkdir -p $(@D)
-	go install github.com/golangci/golangci-lint/cmd/golangci-lint@$(GOLANGCILINT_VERSION)
+	go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@$(GOLANGCILINT_VERSION)
 
 $(BIN)/CompileDaemon: Makefile
 	@mkdir -p $(@D)

@@ -19,6 +19,13 @@ var (
 	_ http.Hijacker       = (*stdResponseWriter)(nil)
 )
 
+func NewStdResponseWriter(w io.Writer) *stdResponseWriter {
+	return &stdResponseWriter{
+		Writer: w,
+		header: make(http.Header),
+	}
+}
+
 // Header implements http.ResponseWriter.
 func (w *stdResponseWriter) Header() http.Header {
 	return w.header
@@ -49,11 +56,4 @@ func (w *stdResponseWriter) Hijack() (net.Conn, *bufio.ReadWriter, error) {
 // Write implements http.ResponseWriter.
 func (w *stdResponseWriter) Write(b []byte) (int, error) {
 	return w.Writer.Write(b)
-}
-
-func NewStdResponseWriter(w io.Writer) *stdResponseWriter {
-	return &stdResponseWriter{
-		Writer: w,
-		header: make(http.Header),
-	}
 }

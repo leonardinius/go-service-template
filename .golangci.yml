@@ -1,40 +1,6 @@
-run:
-  timeout: 5m
-
-linters-settings:
-  gci:
-    sections:
-      - standard # Standard section: captures all standard packages.
-      - default # Default section: contains all imports that could not be matched to another section type.
-      - prefix(github.com/leonardinius/go-service-template) # Custom section: groups all imports with the specified Prefix.
-      - blank # Blank section: contains all blank imports. This section is not present unless explicitly enabled.
-      - dot # Dot section: contains all dot imports. This section is not present unless explicitly enabled.
-      - alias # Alias section: contains all alias imports. This section is not present unless explicitly enabled.
-  goconst:
-    min-len: 2
-    min-occurrences: 2
-  misspell:
-    locale: US
-  lll:
-    line-length: 140
-  gocritic:
-    enabled-tags:
-      - performance
-      - style
-      - experimental
-  revive:
-    ignore-generated-header: true
-    severity: warning
-    enable-all-rules: false
-  sloglint:
-    no-mixed-args: true
-    kv-only: false
-    attr-only: true
-    context: scope
-    static-msg: true
-    # Enforce a single key naming convention. Values: snake, kebab, camel, pascal. Default: ""
-    key-naming-case: snake
+version: "2"
 linters:
+  default: all
   disable:
     - depguard
     - exhaustruct
@@ -42,43 +8,86 @@ linters:
     - gochecknoglobals
     - gochecknoinits
     - goconst
-    - gomnd
-    - mnd
     - ireturn
+    - mnd
+    - nilnil
     - nlreturn
     - nonamedreturns
     - varnamelen
     - wrapcheck
     - wsl
-    - nilnil
-      # dead packages
-    - execinquery
-  fast: false
-  enable-all: true
-
-issues:
-  exclude-dirs:
-    - vendor
-    - pkg/gen
-  exclude-rules:
-    - text: "at least one file in a package should have a package comment"
-      linters:
-        - stylecheck
-    - text: "should have a package comment"
-      linters:
-        - golint
-        - revive
-    - path: _test\.go
-      linters:
-        - gosec
-        - dupl
-        - wrapcheck
-    - path: e2e/.*\.go
-      linters:
-        - gosec
-        - dupl
-        - wrapcheck
-    - path: cmd/.*\.go
-      linters:
-        - gochecknoinits
-  exclude-use-default: false
+  settings:
+    goconst:
+      min-len: 2
+      min-occurrences: 2
+    gocritic:
+      enabled-tags:
+        - performance
+        - style
+        - experimental
+    lll:
+      line-length: 140
+    misspell:
+      locale: US
+    revive:
+      severity: warning
+      enable-all-rules: false
+    sloglint:
+      no-mixed-args: true
+      kv-only: false
+      attr-only: true
+      context: scope
+      static-msg: true
+      key-naming-case: snake
+  exclusions:
+    generated: lax
+    rules:
+      - linters:
+          - staticcheck
+        text: at least one file in a package should have a package comment
+      - linters:
+          - golint
+          - revive
+        text: should have a package comment
+      - linters:
+          - dupl
+          - gosec
+          - wrapcheck
+        path: _test\.go
+      - linters:
+          - dupl
+          - gosec
+          - wrapcheck
+        path: e2e/.*\.go
+      - linters:
+          - gochecknoinits
+        path: cmd/.*\.go
+    paths:
+      - vendor
+      - pkg/gen
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+  settings:
+    gci:
+      sections:
+        - standard
+        - default
+        - prefix(github.com/leonardinius/go-service-template)
+        - blank
+        - dot
+        - alias
+  exclusions:
+    generated: lax
+    paths:
+      - vendor
+      - pkg/gen
+      - third_party$
+      - builtin$
+      - examples$

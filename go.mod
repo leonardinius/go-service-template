@@ -1,7 +1,6 @@
 module github.com/leonardinius/go-service-template
 
-go 1.23
-toolchain go1.24.1
+go 1.24.2
 
 require (
 	connectrpc.com/connect v1.17.0
